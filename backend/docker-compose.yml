@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  backend:
+    build: .
+    args:
+      APP_PORT: "3333"
+    volumes:
+      - ".:/app"
+    container_name: backend
+    environment:
+      - NODE_ENV=development
+      - APP_PORT=3333
+    ports:
+      - "3333:3333"
