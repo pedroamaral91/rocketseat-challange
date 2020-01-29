@@ -1,6 +1,6 @@
 import { Column, Model, DataType } from 'sequelize-typescript'
 import connection from '../../database'
-import * as bcrypt from 'bcryptjs'
+import * as bcrypt from 'bcryptjs';
 
 class User extends Model<User> {
   @Column
