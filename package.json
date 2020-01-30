@@ -1,0 +1,24 @@
+{
+  "name": "rocketseat-challange",
+  "version": "1.0.0",
+  "repository": "git@github.com:pedroamaral91/rocketseat-challange.git",
+  "author": "Pedro Amaral <pedro.vinicius91@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "bootstrap": "yarn && cd packages/backend && yarn && cd ../frontend && yarn",
+    "run:backend": "cd packages/backend && yarn dev",
+    "run:frontend": "cd packages/frontend && yarn start",
+    "test:backend": "cd packages/backend && yarn test",
+    "test:frontend": "cd packages/frontend && yarn test",
+    "start": "concurrently --kill-others-on-fail \"yarn run:backend\"  \"yarn run:frontend\""
+  },
+  "dependencies": {
+    "concurrently": "^5.1.0"
+  }
+}
