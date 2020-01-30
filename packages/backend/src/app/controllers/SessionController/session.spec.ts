@@ -26,9 +26,17 @@ const mockRequest: any = (data: {}) => {
 }
 
 describe('Unit tests to Session Controller', () => {
+  it('should validation fails', async () => {
+    const req = mockRequest({})
+    const res = mockResponse()
+    await SessionController.store(req, res)
+    expect(res.status).toHaveBeenCalledWith(400)
+    expect(res.json).toHaveBeenCalledWith({ message: 'Validation fails' })
+  })
+
   it('should user not be authenticated if not exists', async () => {
     User.findOne = jest.fn().mockReturnValue(null)
-    const req = mockRequest()
+    const req = mockRequest({ email: 'test@gmail.com', password: 123456 })
     const res = mockResponse()
     await SessionController.store(req, res)
     expect(res.status).toHaveBeenCalledWith(401)
@@ -36,7 +44,7 @@ describe('Unit tests to Session Controller', () => {
   })
 
   it('should user not be authenticated if password is wrong', async () => {
-    const req = mockRequest()
+    const req = mockRequest({ email: 'test@gmail.com', password: 123456 })
     const res = mockResponse()
     User.findOne = jest.fn().mockReturnValue(true)
     User.checkPassword = jest.fn().mockReturnValue(false)
@@ -47,7 +55,7 @@ describe('Unit tests to Session Controller', () => {
   })
 
   it('should user be authenticated', async () => {
-    const req = mockRequest({ email: 'test@gmail.com' })
+    const req = mockRequest({ email: 'test@gmail.com', password: 123456 })
     const res = mockResponse()
     User.findOne = jest.fn().mockReturnValue({ id: 1, name: 'Pedro' })
     const { id, name } = User.findOne()
