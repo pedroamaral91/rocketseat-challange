@@ -12,13 +12,23 @@
   },
   "scripts": {
     "bootstrap": "yarn && cd packages/backend && yarn && cd ../frontend && yarn",
+    "run:migrate": "cd packages/backend && yarn sequelize db:migrate",
+    "run:migrate:undo": "cd packages/backend && yarn sequelize db:migrate:undo:all",
     "run:backend": "cd packages/backend && yarn dev",
     "run:frontend": "cd packages/frontend && yarn start",
     "test:backend": "cd packages/backend && yarn test",
     "test:frontend": "cd packages/frontend && yarn test",
+    "test": "yarn test:backend && yarn test:frontend",
     "start": "concurrently --kill-others-on-fail \"yarn run:backend\"  \"yarn run:frontend\""
   },
-  "dependencies": {
-    "concurrently": "^5.1.0"
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn test"
+    }
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "husky": "^4.2.1"
   }
 }
