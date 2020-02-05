@@ -1,5 +1,6 @@
 import request from 'supertest'
 import app from '../../../app'
+import Recipient from '../../models/Recipient'
 
 jest.mock('jsonwebtoken', () => ({
   verify: (): any => ({ admin: 1 })
@@ -9,9 +10,13 @@ afterEach(() => {
   jest.clearAllMocks()
 })
 
+afterAll(async () => {
+  await Recipient.destroy({ where: {}, truncate: true })
+})
+
 describe('recipient tests', () => {
   it('should validation fail', async () => {
-    const response = await request(app).post('/recipient').set({ Authorization: 'test' }).send({})
+    const response = await request(app).post('/recipient').set({ Authorization: 'Bearer test' }).send({})
 
     expect(response.status).toBe(400)
     expect(response.body).toEqual({ message: 'Validation fails' })
@@ -26,7 +31,7 @@ describe('recipient tests', () => {
       state: 'PR',
       city: 'city'
     }
-    const response = await request(app).post('/recipient').set('Authorization', 'test').send(payload)
+    const response = await request(app).post('/recipient').set('Authorization', 'Bearer test').send(payload)
 
     expect(response.status).toBe(201)
     expect(response.body).toMatchObject({ name: 'fake' })

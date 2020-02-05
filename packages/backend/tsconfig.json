@@ -11,7 +11,7 @@
     "baseUrl": "./",
     "incremental": true,
     "strict": true,
-    "types": ["reflect-metadata", "jest"],
+    "types": ["jest"],
     "allowJs": true,
     "esModuleInterop": true
   },

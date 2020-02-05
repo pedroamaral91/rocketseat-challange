@@ -9,8 +9,7 @@ interface Payload {
 
 export default function Auth (req: Request, res: Response, next: NextFunction): void | Response {
   try {
-    const token = req.headers.authorization as string
-
+    const [, token] = req.headers.authorization?.split(' ') as string[]
     if (!token) {
       return res.status(401).json({ message: 'Not authorized' })
     }

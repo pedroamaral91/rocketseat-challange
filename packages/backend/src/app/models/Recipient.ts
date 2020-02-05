@@ -1,39 +1,30 @@
-import { Column, Model, DataType } from 'sequelize-typescript'
-import connection from '../../database'
-
+import { Model, DataTypes, Sequelize } from 'sequelize'
 class Recipient extends Model<Recipient> {
-  @Column
   public name !: string
-
-  @Column
   public street !: string
-
-  @Column
   public number !: number
-
-  @Column
-  public additional_address !: string
-
-  @Column
+  public additional_address ?: string
   public state !: string
-
-  @Column
   public city !: string
-
-  @Column
   public zip_code !: string
+
+  static initialize (sequelize: Sequelize): void {
+    this.init({
+      name: DataTypes.STRING,
+      street: DataTypes.STRING,
+      number: DataTypes.INTEGER,
+      additional_address: DataTypes.STRING,
+      state: DataTypes.STRING,
+      city: DataTypes.STRING,
+      zip_code: DataTypes.STRING
+    }, {
+      sequelize
+    })
+  }
+
+  static associate (model: any): void {
+    this.hasOne(model.Order, { foreignKey: 'recipient_id', onDelete: 'SET NULL' })
+  }
 }
-Recipient.init({
-  name: DataType.STRING,
-  street: DataType.STRING,
-  number: DataType.INTEGER,
-  additional_address: DataType.STRING,
-  state: DataType.STRING,
-  city: DataType.STRING,
-  zip_code: DataType.STRING
-}, {
-  sequelize: connection,
-  tableName: 'recipient'
-})
 
 export default Recipient

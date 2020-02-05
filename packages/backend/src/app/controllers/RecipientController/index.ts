@@ -13,9 +13,11 @@ class RecipientController {
       state: Yup.string().required(),
       city: Yup.string().required()
     })
+
     if (!await schema.isValid(req.body)) {
       return res.status(400).json({ message: 'Validation fails' })
     }
+
     const recipient = await Recipient.create(req.body)
     return res.status(201).json(recipient)
   }
