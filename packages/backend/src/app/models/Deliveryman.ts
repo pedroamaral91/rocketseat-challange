@@ -1,24 +1,26 @@
-import { Column, Model, DataType } from 'sequelize-typescript'
-import connection from '../../database'
+import { Model, DataTypes, Sequelize } from 'sequelize'
 
-class Recipient extends Model<Recipient> {
-  @Column
+class Deliveryman extends Model<Deliveryman> {
+  public readonly id?: number;
   public name !: string
-
-  @Column
   public avatar_id !: number
-
-  @Column
   public email !: string
+
+  static initialize (sequelize: Sequelize): void {
+    this.init({
+      name: DataTypes.STRING,
+      avatar_id: DataTypes.INTEGER,
+      email: DataTypes.STRING
+    }, {
+      sequelize,
+      tableName: 'deliveryman'
+    })
+  }
+
+  static associate (model: any): void {
+    this.belongsTo(model.File, { foreignKey: 'avatar_id' })
+    this.hasOne(model.Order, { foreignKey: 'deliveryman_id' })
+  }
 }
 
-Recipient.init({
-  name: DataType.STRING,
-  avatar_id: DataType.INTEGER,
-  email: DataType.STRING
-}, {
-  sequelize: connection,
-  tableName: 'deliveryman'
-})
-
-export default Recipient
+export default Deliveryman

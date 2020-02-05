@@ -1,10 +1,7 @@
 import { Request, Response } from 'express'
 import * as Yup from 'yup'
 import Deliveryman from '../../models/Deliveryman'
-
-jest.mock('jsonwebtoken', () => ({
-  verify: (): any => ({ admin: 1 })
-}))
+import File from '../../models/File'
 
 class DeliverymanController {
   public async store (req: Request, res: Response): Promise<Response> {

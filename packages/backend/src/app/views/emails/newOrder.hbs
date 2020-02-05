@@ -1,0 +1,23 @@
+<strong>Olá, {{ name }} </strong>
+<p>Novo pedido para ser entregue foi cadastrado!</p>
+<p>Segue os dados para entrega:</p><br />
+<div style="display: flex">
+  <strong>Cidade:&nbsp;</strong><span>{{ city }}</span>
+</div>
+<div style="display: flex">
+  <strong>Estado:&nbsp;</strong><span>{{ state }}</span>
+</div>
+<div style="display: flex">
+  <strong>CEP:&nbsp;</strong><span>{{ zip_code }}</span>
+</div>
+<div style="display: flex">
+  <strong>Rua:&nbsp;</strong><span>{{ street }}</span>
+</div>
+<div style="display: flex">
+  <strong>Numero:&nbsp;</strong><span>{{ number }}</span>
+</div>
+<div style="display: flex">
+  <strong>Complemento:&nbsp;</strong><span>{{ additional_address }}</span>
+</div>
+
+<a href="{{url}}">Clique aqui</a>&nbsp;<span>para retirar o pedido e prosseguir para entrega!</span>

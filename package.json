@@ -11,9 +11,11 @@
     ]
   },
   "scripts": {
+    "clean": "cd packages/backend && rm -rf node_modules && rm -f yarn.lock && cd ../frontend && rm -rf node_modules && rm -f yarn.lock",
     "bootstrap": "yarn && cd packages/backend && yarn && cd ../frontend && yarn",
     "run:migrate": "cd packages/backend && yarn sequelize db:migrate",
     "run:migrate:undo": "cd packages/backend && yarn sequelize db:migrate:undo:all",
+    "run:queue": "cd packages/backend && yarn queue",
     "run:backend": "cd packages/backend && yarn dev",
     "run:frontend": "cd packages/frontend && yarn start",
     "test:backend": "cd packages/backend && yarn test",
@@ -28,6 +30,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@types/date-fns": "^2.6.0",
     "concurrently": "^5.1.0",
     "husky": "^4.2.1"
   }
