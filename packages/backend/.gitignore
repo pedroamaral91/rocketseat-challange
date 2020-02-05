@@ -1,5 +1,4 @@
 node_modules
 dist
-database/database.sqlite
 .env
 .env.test

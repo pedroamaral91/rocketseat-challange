@@ -17,7 +17,7 @@
     "run:backend": "cd packages/backend && yarn dev",
     "run:frontend": "cd packages/frontend && yarn start",
     "test:backend": "cd packages/backend && yarn test",
-    "test:frontend": "cd packages/frontend && yarn test",
+    "test:frontend": "cd packages/frontend && yarn test --watchAll=false",
     "test": "yarn test:backend && yarn test:frontend",
     "start": "concurrently --kill-others-on-fail \"yarn run:backend\"  \"yarn run:frontend\""
   },
