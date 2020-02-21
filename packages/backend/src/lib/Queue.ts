@@ -1,4 +1,4 @@
-import Bee, { Job, DoneCallback } from 'bee-queue'
+import Bee, { Job } from 'bee-queue'
 
 import { QueueInterface, QueuesType } from './queue.types'
 

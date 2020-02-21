@@ -5,7 +5,7 @@ import Deliveryman from '../models/Deliveryman'
 import Order from '../models/Order'
 import env from '../../config/env'
 
-interface DataI {
+interface DataInterface {
   [prop: string]: {
     deliveryman: Deliveryman;
     recipient: Recipient;
@@ -18,7 +18,7 @@ class NewOrderMail implements JobInterface {
     return 'NewOrderMail'
   }
 
-  async handle ({ data }: DataI): Promise<void> {
+  async handle ({ data }: DataInterface): Promise<void> {
     const { deliveryman, recipient, order } = data
     const { city, street, number, additional_address, state, zip_code } = recipient
     const url = `${env('APP_URL')}/order/${order.id}`

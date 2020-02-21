@@ -1,5 +1,4 @@
 import { Request, Response } from 'express'
-import * as Yup from 'yup'
 
 import Order from '../../models/Order'
 import Recipient from '../../models/Recipient'
@@ -9,17 +8,6 @@ import Queue from '../../../lib/Queue'
 
 class OrderController {
   async store (req: Request, res: Response): Promise<Response> {
-    const schema = Yup.object().shape({
-      recipient_id: Yup.number().required(),
-      deliveryman_id: Yup.number().required(),
-      product: Yup.string().required(),
-      start_date: Yup.date().required()
-    })
-
-    if (!await schema.isValid(req.body)) {
-      return res.status(400).json({ message: 'Validation fails' })
-    }
-
     const order: Order = await Order.create(req.body)
 
     const deliveryman: Deliveryman = await Deliveryman.findByPk(req.body.deliveryman_id)
@@ -54,8 +42,6 @@ class OrderController {
     const { id } = req.params
 
     const order: Order = await Order.findByPk(id)
-    console.log(order)
-    console.log({ id })
     if (!order) {
       return res.status(404).json({ message: 'Order not found' })
     }
@@ -64,13 +50,6 @@ class OrderController {
   }
 
   async update (req: Request, res: Response): Promise<Response> {
-    const schema = Yup.object().shape({
-      start_date: Yup.date().required()
-    })
-
-    if (!await schema.isValid(req.body)) {
-      return res.status(400).json({ message: 'Fail in validation!' })
-    }
     const { start_date } = req.body
     const requestHour = new Date(start_date).getHours()
     const orderId = req.params.id

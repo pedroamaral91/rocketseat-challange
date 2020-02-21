@@ -21,7 +21,7 @@
   "plugins": ["@typescript-eslint", "jest"],
   "rules": {
     "camelcase": "off",
-    "@typescript-eslint/camelcase": ["error", { "properties": "never" }],
+    "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/no-explicit-any": ["off"]
   }
 }
