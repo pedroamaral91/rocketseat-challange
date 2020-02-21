@@ -1,5 +1,6 @@
 import { Model, DataTypes, Sequelize } from 'sequelize'
 class Recipient extends Model<Recipient> {
+  public readonly id ?: number
   public name !: string
   public street !: string
   public number !: number

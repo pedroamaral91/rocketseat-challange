@@ -49,13 +49,13 @@ describe('Integration tests for List an Order', () => {
   })
 
   it('should return one order', async () => {
-    const orders: Order[] = await Order.findAll()
+    const order: Order = await Order.findOne()
 
-    const response = await request(app).get(`/order/${orders[0].id}`).set('Authorization', 'Beraer lol')
+    const response = await request(app).get(`/order/${order.id}`).set('Authorization', 'Beraer lol')
 
     expect(response.body).toMatchObject({
-      product: orders[0].product,
-      id: orders[0].id
+      product: order.product,
+      id: order.id
     })
     expect(response.status).toBe(200)
   })
@@ -72,8 +72,9 @@ describe('Integraion tests for Update an Order', () => {
   })
 
   it('should update an order', async () => {
+    const order: Order = await Order.findOne()
     const start_date = new Date('2100-01-01 8:00:00')
-    const response = await request(app).put('/order/1').send({
+    const response = await request(app).put(`/order/${order.id}`).send({
       start_date
     })
 
@@ -83,9 +84,9 @@ describe('Integraion tests for Update an Order', () => {
 
   describe('Integration tests for delete an Order', () => {
     it('should delete an order', async () => {
-      const orders: Order[] = await Order.findAll()
+      const order: Order = await Order.findOne()
 
-      const response = await request(app).delete(`/order/${orders[0].id}`).set('Authorization', 'Bearer 123')
+      const response = await request(app).delete(`/order/${order.id}`).set('Authorization', 'Bearer 123')
 
       expect(response.body).toMatchObject({ message: 'The order selected was removed' })
       expect(response.status).toBe(200)
