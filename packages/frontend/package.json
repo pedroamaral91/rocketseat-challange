@@ -11,14 +11,17 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "3.3.0",
+    "react-app-rewire-hot-loader": "^2.0.1",
+    "react-app-rewired": "^2.1.5",
+    "react-dom": "npm:@hot-loader/react-dom",
+    "react-hot-loader": "^4.12.19",
+    "react-scripts": "3.4.0",
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -37,6 +40,6 @@
     ]
   },
   "devDependencies": {
-    "jest": "^24.0.0"
+    "react-app-rewired": "^2.1.5"
   }
 }
