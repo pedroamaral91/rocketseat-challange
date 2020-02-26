@@ -1,13 +1,17 @@
 import React from 'react';
-import { hot } from 'react-hot-loader/root'
+import { hot } from 'react-hot-loader/root';
+import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './theme';
 
-function App() {
-  return (
-    <div className="App">
-      hello world
-    </div>
-  );
-}
+import Routes from './routes';
 
-export default process.env.NODE_ENV === "development" ? hot(App) : App
+const App: React.FC = () => (
+  <BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <Routes />
+    </ThemeProvider>
+  </BrowserRouter>
+);
 
+export default process.env.NODE_ENV === 'development' ? hot(App) : App;
