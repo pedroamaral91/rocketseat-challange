@@ -20,7 +20,7 @@ const Login: React.FC = () => {
   const handleClick = useCallback((e: any) => {
     e.preventDefault();
     dispatch(signInRequest(email, password));
-  }, [email, password]);
+  }, [email, password, dispatch]);
 
   return (
     <Container>
