@@ -1,18 +1,40 @@
-import { Action } from 'redux';
-import { AuthInitialTypes } from './model';
-
-type User = {
-  id: number
-  name: string
-}
-export interface CreatorTypes {
-  authClear(): AuthInitialTypes
-  signInRequest(email: string, password: string): Action
-  signInSuccess(token: string, user: User): Action
-  signInFailure(): Action
+export enum AuthTypes {
+  CLEAR = '@auth/AUTH_CLEAR',
+  SIGN_IN_REQUEST = '@auth/SIGN_IN_REQUEST',
+  SIGN_IN_SUCCESS = '@auth/SIGN_IN_SUCCESS',
+  SIGN_IN_FAILURE = '@auth/SIGN_IN_FAILURE'
 }
 
-export interface TypesInterface {
-  AUTH_CLEAR: string
-  SIGN_IN_REQUEST: string
+export type AuthState = {
+  readonly token: string;
+  readonly signed: boolean;
+  readonly loading: boolean;
+};
+
+// Action Types
+export interface AuthClearAction {
+  type: typeof AuthTypes.CLEAR;
 }
+export interface AuthSignInRequestAction {
+  type: typeof AuthTypes.SIGN_IN_REQUEST;
+  payload: {
+    email: string;
+    password: string;
+  };
+}
+
+interface AuthSignInSuccessAction {
+  type: typeof AuthTypes.SIGN_IN_SUCCESS;
+  payload: {
+    token: string;
+  };
+}
+interface AuthSignInFailureAction {
+  type: typeof AuthTypes.SIGN_IN_FAILURE;
+}
+
+export type AuthActions =
+  | AuthClearAction
+  | AuthSignInRequestAction
+  | AuthSignInSuccessAction
+  | AuthSignInFailureAction;

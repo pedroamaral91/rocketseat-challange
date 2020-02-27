@@ -1,24 +1,23 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
-import { Types, AuthCreators } from './duck';
+import { toast } from 'react-toastify';
+import { AuthCreators } from '.';
 import api from '../../../services/api';
+import { AuthSignInRequestAction, AuthTypes } from './types';
 
-type signInRequestProps = {
-  email: string
-  password: string
-}
-
-function* signInRequest({ email, password }: signInRequestProps): Generator<any> {
+function* signInRequest({ payload }: AuthSignInRequestAction): Generator {
   try {
-    const response = yield call(api.post, 'session', { email, password });
-    console.log(response);
+    const { email, password } = payload;
+    const response: any = yield call(api.post, 'session', {
+      email,
+      password,
+    });
+    const { token, id, name } = response.data;
+    yield put(AuthCreators.signInSuccess(token, { id, name }));
   } catch (er) {
     yield put(AuthCreators.signInFailure());
-    console.log(er);
+    toast.error(er.response.data.message, { autoClose: 3000, position: 'top-right' });
   }
   yield;
 }
 
-
-export default [
-  takeLatest(Types.SIGN_IN_REQUEST, signInRequest),
-];
+export default [takeLatest(AuthTypes.SIGN_IN_REQUEST, signInRequest)];

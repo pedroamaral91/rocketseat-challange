@@ -16,8 +16,7 @@ const Login: React.FC = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const handleClick = useCallback((e: any) => {
+  const handleClick = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
     dispatch(signInRequest(email, password));
   }, [email, password, dispatch]);
@@ -30,7 +29,7 @@ const Login: React.FC = () => {
         </LogoContainer>
         <Form>
           <InputLabel label="SEU E-MAIL" handleChange={(e): void => setEmail(e.target.value)} placeholder="email@email.com" value={email} />
-          <InputLabel type="password" label="SEU TESTE" handleChange={(e): void => setPassword(e.target.value)} value={password} />
+          <InputLabel type="password" label="SUA SENHA" handleChange={(e): void => setPassword(e.target.value)} value={password} />
           <WrapperButton>
             <Button type="submit" onClick={handleClick}>Entrar no sistema</Button>
           </WrapperButton>

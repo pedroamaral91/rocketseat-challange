@@ -28,13 +28,14 @@
       }
     }
   },
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": ["react", "@typescript-eslint", "react-hooks"],
   "rules": {
     "import/prefer-default-export": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".tsx"] }],
     "@typescript-eslint/no-explicit-any": "off",
     "react/prop-types": "off",
     "import/extensions": "off",
-    "import/no-named-default": "off"
+    "import/no-named-default": "off",
+    "arrow-body-style": "off"
   }
 }

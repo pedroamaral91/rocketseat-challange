@@ -4,7 +4,7 @@ import { Button as ButtonComponent } from './styles';
 
 type ButtonTypes = {
   children: string;
-  onClick(e: any): void;
+  onClick(e: React.MouseEvent): void;
   type?: 'submit' | 'button' | 'reset' | undefined;
 };
 

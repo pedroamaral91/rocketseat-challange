@@ -1,32 +1,40 @@
-import { createReducer, createActions } from 'reduxsauce';
-import initial, { AuthInitialTypes } from './model';
-import { CreatorTypes } from './types';
+import { action as Action } from 'typesafe-actions';
+import { Reducer } from 'redux';
+import { UserState } from '../user/types';
+import {
+  AuthTypes, AuthState, AuthActions,
+} from './types';
 
-const clear = (): AuthInitialTypes => ({ ...initial });
-
-const signInSuccess = (state: AuthInitialTypes, { token }: any): AuthInitialTypes => ({
-  ...state,
-  signed: true,
-  token,
-});
-
-const signInFailure = (state: AuthInitialTypes): AuthInitialTypes => ({
-  ...state,
+const INITIAL_STATE: AuthState = {
   loading: false,
-});
+  token: '',
+  signed: false,
+};
 
-const { Types, Creators } = createActions({
-  authClear: [],
-  signInRequest: ['email', 'password'],
-  signInSuccess: ['token', 'user'],
-  signInFailure: [],
-});
+export const AuthCreators = {
+  authClear: (): AuthActions => Action(AuthTypes.CLEAR),
+  signInRequest: (email: string, password: string): AuthActions => {
+    return Action(AuthTypes.SIGN_IN_REQUEST, { email, password });
+  },
+  signInSuccess: (token: string, user: UserState): AuthActions => {
+    return Action(AuthTypes.SIGN_IN_SUCCESS, { token, user });
+  },
+  signInFailure: (): AuthActions => Action(AuthTypes.SIGN_IN_FAILURE),
+};
 
-export const AuthCreators = Creators as CreatorTypes;
-export { Types };
+const authReducer: Reducer<AuthState, AuthActions> = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case AuthTypes.CLEAR:
+      return { ...INITIAL_STATE };
+    case AuthTypes.SIGN_IN_REQUEST:
+      return { ...state, loading: true };
+    case AuthTypes.SIGN_IN_SUCCESS:
+      return { ...state, loading: false, token: action.payload.token };
+    case AuthTypes.SIGN_IN_FAILURE:
+      return { ...state, loading: false };
+    default:
+      return state;
+  }
+};
 
-export default createReducer(initial, {
-  [Types.AUTH_CLEAR]: clear,
-  [Types.SIGN_IN_SUCCESS]: signInSuccess,
-  [Types.SIGN_IN_FAILURE]: signInFailure,
-});
+export default authReducer;
