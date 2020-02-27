@@ -8,6 +8,16 @@ const theme: DefaultTheme = {
     warning: '#C1BC35',
     success: '#2CA42B',
     info: '#83CEC9',
+    accent: '#ffff',
+  },
+  fonts: {
+    colors: {
+      placeholder: '#999999',
+      label: '#444444',
+    },
+    weight: {
+      bold: 700,
+    },
   },
 
 };

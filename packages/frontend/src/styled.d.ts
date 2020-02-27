@@ -1,4 +1,4 @@
-import 'styled-components'
+import 'styled-components';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
@@ -9,6 +9,17 @@ declare module 'styled-components' {
       danger: string
       warning: string
       info: string
+      accent: string
+    }
+
+    fonts: {
+      colors: {
+        placeholder: string
+        label: string
+      }
+      weight: {
+        bold: number
+      }
     }
   }
 }
