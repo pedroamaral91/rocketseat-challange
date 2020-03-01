@@ -1,4 +1,8 @@
-export { default as authReducer } from './duck';
-export { AuthCreators } from './duck';
-export { AuthTypes } from './types';
-export { default as AuthSagas } from './sagas';
+import { default as reducer, AuthCreators as creators } from './duck';
+import { default as sagas } from './sagas';
+import * as selectors from './selectors';
+
+export const authReducer = reducer;
+export const AuthCreators = creators;
+export const AuthSagas = sagas;
+export const authSelectors = selectors;

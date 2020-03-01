@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { AuthTypes } from '../auth';
+import { AuthTypes } from '../auth/types';
 import { UserState, UserActions } from './types';
 
 const INITIAL_STATE: UserState = {

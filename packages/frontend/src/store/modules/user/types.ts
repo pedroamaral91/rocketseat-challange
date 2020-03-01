@@ -1,4 +1,4 @@
-import { AuthTypes } from '../auth';
+import { AuthTypes } from '../auth/types';
 
 export type UserState = {
   readonly id: number

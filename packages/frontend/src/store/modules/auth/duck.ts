@@ -29,9 +29,11 @@ const authReducer: Reducer<AuthState, AuthActions> = (state = INITIAL_STATE, act
     case AuthTypes.SIGN_IN_REQUEST:
       return { ...state, loading: true };
     case AuthTypes.SIGN_IN_SUCCESS:
-      return { ...state, loading: false, token: action.payload.token };
+      return {
+        ...state, loading: false, signed: true, token: action.payload.token,
+      };
     case AuthTypes.SIGN_IN_FAILURE:
-      return { ...state, loading: false };
+      return { ...state, signed: false, loading: false };
     default:
       return state;
   }

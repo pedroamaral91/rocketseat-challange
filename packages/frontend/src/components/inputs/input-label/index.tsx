@@ -6,7 +6,7 @@ type InputProps = {
   value: string
   type?: string
   placeholder?: string
-  handleChange: (event: any) => void
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const InputLabel: React.FC<InputProps> = ({
