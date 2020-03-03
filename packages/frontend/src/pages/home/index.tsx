@@ -1,7 +1,8 @@
 import React from 'react';
+import Menu from '../../components/menu';
 
 const Home: React.FC = () => (
-  <h1>Home</h1>
+  <Menu />
 );
 
 export default Home;
