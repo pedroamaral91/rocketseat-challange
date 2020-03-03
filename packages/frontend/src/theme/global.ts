@@ -11,4 +11,9 @@ export default createGlobalStyle`
     font-size: 16px;
     font-family: 'Roboto Mono';
   }
+  input, button {
+    &:focus {
+    outline: 0;
+  }
+  }
 `;

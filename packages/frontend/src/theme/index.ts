@@ -10,10 +10,19 @@ const theme: DefaultTheme = {
     info: '#83CEC9',
     accent: '#ffff',
   },
+  background: {
+    primary: '#F5F5F5',
+  },
+  border: {
+    colors: {
+      primary: '#DDDDDD',
+    },
+  },
   fonts: {
     colors: {
-      placeholder: '#999999',
-      label: '#444444',
+      primary: '#999999',
+      secondary: '#666666',
+      active: '#444444',
     },
     weight: {
       bold: 700,

@@ -6,6 +6,11 @@ jest.mock('jsonwebtoken', () => ({
   verify: (): any => ({ admin: 1 })
 }))
 
+jest.mock('../../../lib/Queue', () => ({
+  init: (): any => ({}),
+  add: (): any => ({})
+}))
+
 afterEach(() => {
   jest.clearAllMocks()
 })

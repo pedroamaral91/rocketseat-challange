@@ -11,11 +11,19 @@ declare module 'styled-components' {
       info: string
       accent: string
     }
-
+    background: {
+      primary: string
+    }
+    border: {
+      colors: {
+        primary: string
+      }
+    }
     fonts: {
       colors: {
-        placeholder: string
-        label: string
+        primary: string
+        secondary: string
+        active: string
       }
       weight: {
         bold: number

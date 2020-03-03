@@ -8,6 +8,6 @@ export interface QueuesType {
 }
 
 export interface QueueInterface {
-  add(queue: string, data: {}): Promise<Job>;
+  add(queue: string, data: {}): Promise<Job>
   processQueue(): void
 }
