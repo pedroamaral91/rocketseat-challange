@@ -5,6 +5,7 @@ const Menu: React.FC = () => (
   <Container>
     <Logo />
     <Divisor />
+    <Divisor />
   </Container>
 );
 
