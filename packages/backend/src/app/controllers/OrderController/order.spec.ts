@@ -1,5 +1,4 @@
 import request from 'supertest'
-import { endOfDay } from 'date-fns'
 
 import app from '../../../app'
 import Order from '../../models/Order'
@@ -8,6 +7,10 @@ import Deliveryman from '../../models/Deliveryman'
 
 jest.mock('jsonwebtoken', () => ({
   verify: (): any => ({ admin: 1 })
+}))
+jest.mock('../../../lib/Queue', () => ({
+  init: (): any => ({}),
+  add: (): any => ({})
 }))
 
 const clearDb = (model: any): Promise<any> => model.destroy({ where: {}, truncate: true })

@@ -36,6 +36,7 @@
     "react/prop-types": "off",
     "import/extensions": "off",
     "import/no-named-default": "off",
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "@typescript-eslint/explicit-function-return-type": "off"
   }
 }

@@ -12,7 +12,7 @@ class OrderController {
 
     const deliveryman: Deliveryman = await Deliveryman.findByPk(req.body.deliveryman_id)
     const recipient: Recipient = await Recipient.findByPk(req.body.recipient_id)
-
+    console.log({ Queue })
     await Queue.add(NewOrderMail.key, {
       deliveryman,
       recipient,

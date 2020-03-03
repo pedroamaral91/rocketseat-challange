@@ -10,12 +10,21 @@ declare module 'styled-components' {
       warning: string
       info: string
       accent: string
+      disabled: string
     }
-
+    background: {
+      primary: string
+    }
+    border: {
+      colors: {
+        primary: string
+      }
+    }
     fonts: {
       colors: {
-        placeholder: string
-        label: string
+        primary: string
+        secondary: string
+        active: string
       }
       weight: {
         bold: number
